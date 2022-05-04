@@ -3,6 +3,7 @@
 use App\Http\Controllers\TodoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post("/register", [UserController::class, 'register']);
+Route::post("/login", [UserController::class, 'login']);
+
+
+
 Route::post('/create-new', [TodoController::class, 'create']);
 Route::get('/all', [TodoController::class, 'all']);
 Route::get('/get-status/{status}/user/{id}', [TodoController::class, 'getbyStatus']);
@@ -28,4 +34,5 @@ Route::delete('/delete/{id}', [TodoController::class, 'delete']);
 Route::patch('/closeTodo/{id}', [TodoController::class, 'closeTodo']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
+    
 });

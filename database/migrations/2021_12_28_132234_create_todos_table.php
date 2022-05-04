@@ -13,6 +13,7 @@ class CreateTodosTable extends Migration
      */
     public function up()
     {
+        if(Schema::hasTable('todos')) return;
         Schema::create('todos', function (Blueprint $table) {
             $table->id();
             $table->string("title");
